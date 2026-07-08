@@ -114,22 +114,22 @@ The local classifiers were optimized using hyperparameter tuning (Balanced Class
 
 #### A. Category Classification Matrix (Gemini Embeddings)
 
-| True \ Predicted | Billing | Technical | Account | Other |
-| :--- | :---: | :---: | :---: | :---: |
-| **Billing** | **45** | 0 | 1 | 2 |
-| **Technical** | 0 | **50** | 0 | 0 |
-| **Account** | 0 | 3 | **47** | 0 |
-| **Other** | 1 | 1 | 0 | **40** |
+| True / Predicted | Billing | Technical | Account | Other |
+| --- | --- | --- | --- | --- |
+| Billing | 45 | 0 | 1 | 2 |
+| Technical | 0 | 50 | 0 | 0 |
+| Account | 0 | 3 | 47 | 0 |
+| Other | 1 | 1 | 0 | 40 |
 
 
 #### B. Urgency Classification Matrix (Gemini Embeddings)
 
-| True \ Predicted | Low | Medium | High | Critical |
-| :--- | :---: | :---: | :---: | :---: |
-| **Low** | **38** | 4 | 0 | 0 |
-| **Medium** | 2 | **42** | 5 | 0 |
-| **High** | 0 | 8 | **45** | 2 |
-| **Critical** | 0 | 0 | 4 | **50** |
+| True / Predicted | Low | Medium | High | Critical |
+| --- | --- | --- | --- | --- |
+| Low | 38 | 4 | 0 | 0 |
+| Medium | 2 | 42 | 5 | 0 |
+| High | 0 | 8 | 45 | 2 |
+| Critical | 0 | 0 | 4 | 50 |
 
 
 ---
