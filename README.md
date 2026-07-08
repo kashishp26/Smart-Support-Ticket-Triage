@@ -110,88 +110,29 @@ The local classifiers were optimized using hyperparameter tuning (Balanced Class
 | **Embedding-based** | ~100-200 ms | ~$0.02 (API-dependent) | Captures deep system engineering context natively. | Requires vector mapping runtime setup. |
 | **LLM Agent** | ~800 - 1500 ms | ~$0.12 (Token-dependent) | Near-perfect accuracy with zero prior training data. | Slower turnaround, variable subscription billing. |
 
+
 ### 3️⃣ Confusion Matrices (True vs Predicted Breakdown)
 
-#### A. Category Classification Matrix (Gemini Embeddings)
+```text
+A. Category Classification Matrix (Gemini Embeddings)
+-------------------------------------------------------
+True \ Predicted | Billing | Technical | Account | Other
+-------------------------------------------------------
+Billing          |   45    |     0     |    1    |   2  
+Technical        |    0    |    50     |    0    |   0  
+Account          |    0    |     3     |   47    |   0  
+Other            |    1    |     1     |    0    |  40  
+-------------------------------------------------------
 
-<table border="1">
-  <tr>
-    <th>True \ Predicted</th>
-    <th>Billing</th>
-    <th>Technical</th>
-    <th>Account</th>
-    <th>Other</th>
-  </tr>
-  <tr>
-    <td><b>Billing</b></td>
-    <td>45</td>
-    <td>0</td>
-    <td>1</td>
-    <td>2</td>
-  </tr>
-  <tr>
-    <td><b>Technical</b></td>
-    <td>0</td>
-    <td>50</td>
-    <td>0</td>
-    <td>0</td>
-  </tr>
-  <tr>
-    <td><b>Account</b></td>
-    <td>0</td>
-    <td>3</td>
-    <td>47</td>
-    <td>0</td>
-  </tr>
-  <tr>
-    <td><b>Other</b></td>
-    <td>1</td>
-    <td>1</td>
-    <td>0</td>
-    <td>40</td>
-  </tr>
-</table>
-
-#### B. Urgency Classification Matrix (Gemini Embeddings)
-
-<table border="1">
-  <tr>
-    <th>True \ Predicted</th>
-    <th>Low</th>
-    <th>Medium</th>
-    <th>High</th>
-    <th>Critical</th>
-  </tr>
-  <tr>
-    <td><b>Low</b></td>
-    <td>38</td>
-    <td>4</td>
-    <td>0</td>
-    <td>0</td>
-  </tr>
-  <tr>
-    <td><b>Medium</b></td>
-    <td>2</td>
-    <td>42</td>
-    <td>5</td>
-    <td>0</td>
-  </tr>
-  <tr>
-    <td><b>High</b></td>
-    <td>0</td>
-    <td>8</td>
-    <td>45</td>
-    <td>2</td>
-  </tr>
-  <tr>
-    <td><b>Critical</b></td>
-    <td>0</td>
-    <td>0</td>
-    <td>4</td>
-    <td>50</td>
-  </tr>
-</table>
-
+B. Urgency Classification Matrix (Gemini Embeddings)
+-------------------------------------------------------
+True \ Predicted |  Low    |  Medium   |  High   | Critical
+-------------------------------------------------------
+Low              |   38    |     4     |    0    |     0
+Medium           |    2    |    42     |    5    |     0
+High             |    0    |     8     |   45    |     2
+Critical         |    0    |     0     |    4    |    50
+-------------------------------------------------------
 
 ---
 
