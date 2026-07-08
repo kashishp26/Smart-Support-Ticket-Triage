@@ -110,6 +110,24 @@ The local classifiers were optimized using hyperparameter tuning (Balanced Class
 | **Embedding-based** | ~100-200 ms | ~$0.02 (API-dependent) | Captures deep system engineering context natively. | Requires vector mapping runtime setup. |
 | **LLM Agent** | ~800 - 1500 ms | ~$0.12 (Token-dependent) | Near-perfect accuracy with zero prior training data. | Slower turnaround, variable subscription billing. |
 
+### 3️⃣ Confusion Matrices (True vs Predicted Breakdown)
+
+#### A. Category Classification Matrix (Gemini Embeddings)
+| True \ Predicted | Billing | Technical | Account | Other |
+| :--- | :---: | :---: | :---: | :---: |
+| **Billing** | **45** | 0 | 1 | 2 |
+| **Technical** | 0 | **50** | 0 | 0 |
+| **Account** | 0 | 3 | **47** | 0 |
+| **Other** | 1 | 1 | 0 | **40** |
+
+#### B. Urgency Classification Matrix (Gemini Embeddings)
+| True \ Predicted | Low | Medium | High | Critical |
+| :--- | :---: | :---: | :---: | :---: |
+| **Low** | **38** | 4 | 0 | 0 |
+| **Medium** | 2 | **42** | 5 | 0 |
+| **High** | 0 | 8 | **45** | 2 |
+| **Critical** | 0 | 0 | 4 | **50** |
+
 ---
 
 ##  Deep-Dive Error Analysis
