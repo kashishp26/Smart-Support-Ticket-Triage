@@ -1,0 +1,12 @@
+{
+    "Category": {
+        "Logistic Regression": 100.0,
+        "Random Forest": 100.0,
+        "Linear SVM": 100.0
+    },
+    "Urgency": {
+        "Logistic Regression": 78.37837837837837,
+        "Random Forest": 78.37837837837837,
+        "Linear SVM": 78.37837837837837
+    }
+}
