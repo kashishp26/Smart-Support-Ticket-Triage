@@ -4,6 +4,14 @@ import os
 import json
 import pandas as pd
 
+from auth_db import login_user, register_user
+
+# Initialize session state for login
+if "logged_in" not in st.session_state:
+    st.session_state["logged_in"] = False
+if "username" not in st.session_state:
+    st.session_state["username"] = None
+
 # Page Configuration Setup
 st.set_page_config(
     page_title="Smart Support Ticket Triage System",
@@ -12,6 +20,65 @@ st.set_page_config(
 )
 
 # Main Header Title
+
+if not st.session_state["logged_in"]:
+    
+    st.markdown("""
+        <style>
+        /* Sidebar and top header space alignment */
+        [data-testid="stAppViewContainer"] > .main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        </style>
+    """, unsafe_allow_html=True)
+
+    left_spacer, center_col, right_spacer = st.columns([1, 2, 1])
+
+    with center_col:
+        # Form box boundary block
+        st.markdown("<h1 style='text-align: center;'></h1>", unsafe_allow_html=True)
+        st.markdown("<h2 style='text-align: center; margin-bottom: 30px;'>Smart Support Triage - Portal</h2>", unsafe_allow_html=True)
+        
+        tab1, tab2 = st.tabs([" Login", " Register"])
+        
+        with tab1:
+            st.markdown("<br>", unsafe_allow_html=True)
+            login_user_input = st.text_input("Username", key="login_user")
+            login_pass_input = st.text_input("Password", type="password", key="login_pass")
+            st.markdown("<br>", unsafe_allow_html=True)
+            
+            if st.button("Login", use_container_width=True, type="primary"):
+                if login_user(login_user_input, login_pass_input):
+                    st.session_state["logged_in"] = True
+                    st.session_state["username"] = login_user_input
+                    st.success(f"Welcome back, {login_user_input}!")
+                    st.rerun()
+                else:
+                    st.error("Invalid Username or Password!")
+                    
+        with tab2:
+            st.markdown("<br>", unsafe_allow_html=True)
+            reg_user_input = st.text_input("Choose Username", key="reg_user")
+            reg_pass_input = st.text_input("Choose Password", type="password", key="reg_pass")
+            reg_pass_confirm = st.text_input("Confirm Password", type="password", key="reg_pass_conf")
+            st.markdown("<br>", unsafe_allow_html=True)
+            
+            if st.button("Sign Up", use_container_width=True):
+                if not reg_user_input or not reg_pass_input:
+                    st.error("Fields cannot be empty!")
+                elif reg_pass_input != reg_pass_confirm:
+                    st.error("Passwords do not match!")
+                else:
+                    success, msg = register_user(reg_user_input, reg_pass_input)
+                    if success:
+                        st.success(msg)
+                    else:
+                        st.error(msg)
+                        
+    st.stop() 
+
 st.title("🎟️ Smart Support Ticket Triage System")
 st.markdown("Automated ticket classification and routing powered by Classical ML & Gemini LLM Agents.")
 
@@ -48,10 +115,16 @@ if os.path.exists(metrics_path):
    # Display the table in the Streamlit sidebar.
     st.sidebar.table(df_styled)
     st.sidebar.caption("The pipeline automatically utilizes the highest-scoring model for local inference.")
-# -------------------------------------------------------------------
 
 st.sidebar.markdown("---")
 st.sidebar.info(" **Tip:** Use Classical ML for high-speed, zero-cost classification. Switch to Gemini LLM for complex context understanding and critical urgency routing.")
+
+st.sidebar.markdown("---")
+st.sidebar.write(f"Logged in as: **{st.session_state['username']}**")
+if st.sidebar.button("Logout", type="primary", use_container_width=True):
+    st.session_state["logged_in"] = False
+    st.session_state["username"] = None
+    st.rerun()
 
 
 # --- MAIN SCREEN INTERFACE ---
