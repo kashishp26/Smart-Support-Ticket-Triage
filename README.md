@@ -6,34 +6,36 @@ A production-grade, hybrid enterprise application designed to automatically clas
 
 ##  Key Features
 
-- **Hybrid Dataset Pipeline:** Custom data engineering pipeline that merges realistic enterprise production patterns with synthetic template expansions to eliminate class imbalance.
-- **Dual-Engine Routing Architecture:** 
-  - **Local ML Engine:** Fast text vectorization using TF-IDF coupled with a Logistic Regression classifier (Requires zero internet or API costs).
-  - **Cloud LLM Engine:** Powered by Google Gemini 2.5 Flash API with advanced rule-based system instructions and structural JSON enforcement.
-- **Enterprise Architecture:** Clean decoupling of Frontend (Streamlit microservice) and Backend (FastAPI web server service).
+ **Secure Authentication Portal:** Integrated a secure local registration and password-hashing (SHA-256) login interface to protect the internal triage dashboard.
+**Hybrid Dataset Pipeline:** Custom data engineering pipeline that merges realistic enterprise production patterns with synthetic template expansions to eliminate class imbalance.
+**Dual-Engine Routing Architecture:** 
+ **Local ML Engine:** Fast text vectorization using TF-IDF coupled with a Logistic Regression classifier (Requires zero internet or API costs).
+**Cloud LLM Engine:** Powered by Google Gemini 2.5 Flash API with advanced rule-based system instructions and structural JSON enforcement.
+**Enterprise Architecture:** Clean decoupling of Frontend (Streamlit microservice) and Backend (FastAPI web server service).
 
 ---
 
 ##  Repository Structure
 
-```text
-Support_Ticket_Triage/              <-- Main Project Root
+📂 Support_Ticket_Triage
+├── 📂 backend
+│   ├── 📂 data           # Cured dataset for offline pipelines
+│   ├── 📂 models         # Saved serialized classifiers (.pkl models)
+│   └── 📂 src
+│       ├── .env           # Environment variables (API Keys)
+│       ├── data_prep.py   # Dataset cleaning, pre-processing & splitting
+│       ├── baseline_ml.py # TF-IDF, SVM, and Semantic Embedding models
+│       ├── llm_agent.py   # Google GenAI SDK (Gemini 2.5 Flash Agent)
+│       ├── evaluate.py    # Model evaluation, accuracy metrics          
+│       └── main.py       # FastAPI Central Router & JSON parsing gateway
 │
-├── backend/                        <-- Core Backend Service
-│   ├── data/                       # Generated Datasets (Train/Test CSVs)
-│   ├── models/                     # Serialized Local ML Models (.pkl)
-│   ├── src/
-│   │   ├── baseline_ml.py          # Classical ML Training & Inference
-│   │   ├── data_prep.py            # Hybrid Data Generation & Stratification
-│   │   ├── evaluate_pipeline.py    # Pipeline Evaluation Metrics
-│   │   ├── llm_classifier.py       # Google Gemini Live API Wrapper
-│   │   └── main.py                 # FastAPI Gateway Web Server
-│   └── .env                        # Secure Environment Variables (API Keys)
+├── 📂 frontend
+│   ├── app.py          # Streamlit Interactive Dashboard (Playground UI)
+│   ├── auth_db.py #Local SHA-256 secure user registration authentication
+│   └── users.json  # Auto-generated encrypted credentials database 
 │
-├── frontend/                       <-- Core Frontend UI Service
-│   └── app.py                      # Streamlit Interactive Dashboard
-│
-└── README.md                       # Comprehensive Documentation
+├── .gitignore   #Ignores venv, users.json, and sensitive credentials
+└── README.md    # Comprehensive setup and system architecture 
 
 #Installation & Setup
 1. Backend Microservice Setup
