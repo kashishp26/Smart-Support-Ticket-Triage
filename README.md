@@ -16,12 +16,12 @@ A production-grade, hybrid enterprise application designed to automatically clas
 ---
 
 ##  Repository Structure
-
-📂 Support_Ticket_Triage
-├── 📂 backend
-│   ├── 📂 data           # Cured dataset for offline pipelines
-│   ├── 📂 models         # Saved serialized classifiers (.pkl models)
-│   └── 📂 src
+```text
+📂 Support_Ticket_Triage/
+├── 📂 backend/
+│   ├── 📂 data/           # Cured dataset for offline pipelines
+│   ├── 📂 models/       # Saved serialized classifiers (.pkl models)
+│   └── 📂 src/
 │       ├── .env           # Environment variables (API Keys)
 │       ├── data_prep.py   # Dataset cleaning, pre-processing & splitting
 │       ├── baseline_ml.py # TF-IDF, SVM, and Semantic Embedding models
@@ -29,13 +29,14 @@ A production-grade, hybrid enterprise application designed to automatically clas
 │       ├── evaluate.py    # Model evaluation, accuracy metrics          
 │       └── main.py       # FastAPI Central Router & JSON parsing gateway
 │
-├── 📂 frontend
+├── 📂 frontend/
 │   ├── app.py          # Streamlit Interactive Dashboard (Playground UI)
 │   ├── auth_db.py #Local SHA-256 secure user registration authentication
 │   └── users.json  # Auto-generated encrypted credentials database 
 │
 ├── .gitignore   #Ignores venv, users.json, and sensitive credentials
 └── README.md    # Comprehensive setup and system architecture 
+```
 
 #Installation & Setup
 1. Backend Microservice Setup
